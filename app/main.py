@@ -7,18 +7,9 @@ from starlette.responses import JSONResponse
 from app.core.config import settings
 from app.core.exceptions import ApiError
 
-from app.models.base import Base
-from app.db.session import engine
 from app.api.routers import router
 
-
-@asynccontextmanager
-async def lifespan(_: FastAPI):
-    Base.metadata.create_all(bind=engine)
-    yield
-
-
-app = FastAPI(lifespan=lifespan)
+app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
