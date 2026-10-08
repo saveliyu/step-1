@@ -1,0 +1,16 @@
+from pydantic import ConfigDict, BaseModel
+
+
+class CategorySchema(BaseModel):
+    id: str
+    name: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class CategoryCreateSchema(BaseModel):
+    name: str
+
+
+class CategoryUpdateSchema(BaseModel):
+    name: str

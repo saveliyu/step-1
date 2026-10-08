@@ -9,3 +9,8 @@ docker run --name pg \
   -p 15432:5432 \
   postgres
 ```
+
+### Run Uvicorn
+```bash
+uvicorn app.main:app --port 8080 --reload
+```
