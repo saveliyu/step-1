@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from pydantic import BaseModel, PostgresDsn, computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -10,8 +11,8 @@ class DataBaseConfig(BaseModel):
     user: str
     password: str
 
-    @computed_field
     @property
+    @computed_field
     def url(self) -> PostgresDsn:
         return PostgresDsn.build(
             scheme="postgresql+psycopg2",
@@ -37,4 +38,4 @@ class Settings(BaseSettings):
     cors: CorsConfig
 
 
-settings = Settings()
+settings = Settings()  # type: ignore[call-arg]

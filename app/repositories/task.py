@@ -13,7 +13,7 @@ class TaskRepository:
     def get_all(self) -> Sequence[TaskModel]:
         return self.db.scalars(select(TaskModel)).all()
 
-    def get_by_id(self, task_id: str) -> TaskModel:
+    def get_by_id(self, task_id: str) -> TaskModel | None:
         stmt = select(TaskModel).where(TaskModel.id == task_id)
         task_model = self.db.scalars(stmt).first()
 

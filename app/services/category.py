@@ -2,7 +2,11 @@ from sqlalchemy.orm import Session
 
 from app.core.exceptions import CategoryNotFoundError
 from app.repositories.category import CategoryRepository
-from app.schemas.category import CategorySchema, CategoryCreateSchema, CategoryUpdateSchema
+from app.schemas.category import (
+    CategoryCreateSchema,
+    CategorySchema,
+    CategoryUpdateSchema,
+)
 
 
 class CategoryService:
@@ -19,7 +23,9 @@ class CategoryService:
         self.db.commit()
         return CategorySchema.model_validate(category_model)
 
-    def update_category(self, category_id: str, payload: CategoryUpdateSchema) -> CategorySchema:
+    def update_category(
+        self, category_id: str, payload: CategoryUpdateSchema
+    ) -> CategorySchema:
         category_model = self.category_repository.get_by_id(category_id)
 
         if category_model is None:

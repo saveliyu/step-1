@@ -13,7 +13,7 @@ class CategoryRepository:
     def get_all(self) -> Sequence[CategoryModel]:
         return self.db.scalars(select(CategoryModel)).all()
 
-    def get_by_id(self, category_id: str) -> CategoryModel:
+    def get_by_id(self, category_id: str) -> CategoryModel | None:
         stmt = select(CategoryModel).where(CategoryModel.id == category_id)
         return self.db.scalars(stmt).first()
 

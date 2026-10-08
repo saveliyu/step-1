@@ -2,7 +2,7 @@ from fastapi import status
 
 
 class ApiError(Exception):
-    status_code: status = status.HTTP_400_BAD_REQUEST
+    status_code: int = status.HTTP_400_BAD_REQUEST
     detail: str = "Error"
 
 
