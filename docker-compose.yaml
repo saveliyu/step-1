@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: .
+    command: sh -c "alembic upgrade head && uvicorn app.main:app --port 8080 --host 0.0.0.0"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: "${DB__USER}"
+      POSTGRES_PASSWORD: "${DB__PASSWORD}"
+      POSTGRES_DB: "${DB__NAME}"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql
+
+
+volumes:
+  pg_data:
